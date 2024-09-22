@@ -1,0 +1,21 @@
+<div class="modal" id="modalCartaoCredito" tabindex="-1" aria-labelledby="modalCartaoCreditoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCartaoCreditoLabel">Solicitar Cartão de Crédito</h5>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="formCartaoCredito" action="{% url 'cadastrar_cartao_de_credito' 0 %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" id="cliente_id" name="cliente_id" value="">
+            <div class="mb-3">
+              <label for="limite" class="form-label">Limite Desejado</label>
+              <input type="number" class="form-control" id="limite" name="limite" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Solicitar Cartão</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

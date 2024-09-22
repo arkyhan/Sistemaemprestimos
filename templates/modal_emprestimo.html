@@ -1,0 +1,12 @@
+<div id="modal-emprestimo" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Realizar Empréstimo</h2>
+        <form id="form-emprestimo" action="{% url 'realizar_emprestimo' 0 %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="cliente_id" id="cliente_id">
+            <input type="number" name="valor" placeholder="Valor do Empréstimo" required>
+            <button type="submit">Realizar Empréstimo</button>
+        </form>
+    </div>
+</div>

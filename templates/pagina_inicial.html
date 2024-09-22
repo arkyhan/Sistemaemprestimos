@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <header class="header">
+        <h1>RaroBank</h1>
+    </header>
+    
+    <div class="container">
+        <h1>Lista de Clientes</h1>
+        <button id="openModal">Adicionar Novo Cliente</button>
+        {% if messages %}
+            <ul class="messages-list">
+                {% for message in messages %}
+                    <li class="messages {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="client-list">
+            {% for cliente in clientes %}
+                <div class="client-card">
+                    <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+                    <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
+                    <p><strong>Telefone:</strong> {{ cliente.telefone }}</p>
+                    <div class="client-card-buttons">
+                        <button class="open-emprestimo" data-cliente-id="{{ cliente.id }}">Empréstimo</button>
+                        <button class="open-edit" data-cliente-id="{{ cliente.id }}">Editar</button>    
+                        <button type="button" class="open-cartao" data-cliente-id="{{ cliente.id }}">Cartão</button>
+                        <a href="{% url 'deletar_cliente' cliente.id %}" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">Deletar</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Nenhum cliente cadastrado.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'modal_adicionar_cliente.html' %}
+    {% include 'modal_emprestimo.html' %}
+    {% include 'modal_editar_cliente.html' %}
+    {% include 'modal_cartao.html' %}
+    <footer class="footer">
+        <p>&copy; 2023 RaroBank. Todos os direitos reservados. ass. Willian Augusto - Raro Academy</p>
+    </footer>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+
+</html>
